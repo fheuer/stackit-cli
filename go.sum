@@ -596,8 +596,6 @@ github.com/ssgreg/nlreturn/v2 v2.2.1 h1:X4XDI7jstt3ySqGU86YGAURbxw3oTDPK9sPEi6YE
 github.com/ssgreg/nlreturn/v2 v2.2.1/go.mod h1:E/iiPB78hV7Szg2YfRgyIrk1AD6JVMTRkkxBiELzh2I=
 github.com/stackitcloud/stackit-sdk-go/core v0.26.0 h1:jQEb9gkehfp6VCP6TcYk7BI10cz4l0KM2L6hqYBH2QA=
 github.com/stackitcloud/stackit-sdk-go/core v0.26.0/go.mod h1:WU1hhxnjXw2EV7CYa1nlEvNpMiRY6CvmIOaHuL3pOaA=
-github.com/stackitcloud/stackit-sdk-go/services/alb v0.10.0 h1:V9+885qkSv621rZZatg1YE5ENM1ElALxQDJsh+hDIUg=
-github.com/stackitcloud/stackit-sdk-go/services/alb v0.10.0/go.mod h1:V6+MolxM/M2FWyWZA+FRFKEzzUe10MU9eEVfMvxHGi8=
 github.com/stackitcloud/stackit-sdk-go/services/alb v0.14.2 h1:hGzfOJjlCRoFpri5eYIiwhE27qu02pKZLprKvbsTC/w=
 github.com/stackitcloud/stackit-sdk-go/services/alb v0.14.2/go.mod h1:eK6oRB5Tmpt6KbXQ4UYBGg2LgW5bPtVoncL9E8JSRww=
 github.com/stackitcloud/stackit-sdk-go/services/authorization v0.12.0 h1:HxPgBu04j5tj6nfZ2r0l6v4VXC0/tYOGe4sA5Addra8=
@@ -618,8 +616,8 @@ github.com/stackitcloud/stackit-sdk-go/services/kms v1.3.2 h1:2ulSL2IkIAKND59eAj
 github.com/stackitcloud/stackit-sdk-go/services/kms v1.3.2/go.mod h1:cuIaMMiHeHQsbvy7BOFMutoV3QtN+ZBx7Tg3GmYUw7s=
 github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.8.0 h1:DxrN85V738CRLynu6MULQHO+OXyYnkhVPgoZKULfFIs=
 github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.8.0/go.mod h1:ClPE4TOM1FeaJiwTXvApq4gWaSgTLq6nU3PPHAIQDN4=
-github.com/stackitcloud/stackit-sdk-go/services/logme v0.25.6 h1:4x30lC+YBmo7XpsAzTn0W+C/oP5flnLVgIh5u3O/P0o=
-github.com/stackitcloud/stackit-sdk-go/services/logme v0.25.6/go.mod h1:ewaYUiZcBTSS6urE5zEJBPCqxu70w2IjnBHCvnKdFKE=
+github.com/stackitcloud/stackit-sdk-go/services/logme v0.29.0 h1:zsZaPr15UkjLuNhOiF+K7dikhenZAd+sQuEvTlGnkvg=
+github.com/stackitcloud/stackit-sdk-go/services/logme v0.29.0/go.mod h1:JDOOYaGgcBts2x52nKPRMFgSZe7qqOFmfz1xIXCQgRY=
 github.com/stackitcloud/stackit-sdk-go/services/logs v0.5.2 h1:vr4atxFRT+EL+DqONMT5R44f7AzEMbePa9U7PEE0THU=
 github.com/stackitcloud/stackit-sdk-go/services/logs v0.5.2/go.mod h1:CAPsiTX7osAImfrG5RnIjaJ/Iz3QpoBKuH2fS346wuQ=
 github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.25.6 h1:Y/byRjX2u/OZl0gKS/Rau6ob2bDyv26xnw6A6JNkKJk=
