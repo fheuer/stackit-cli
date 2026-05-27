@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 	sdkUtils "github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/cdn"
+	cdn "github.com/stackitcloud/stackit-sdk-go/services/cdn/v1api"
 
 	"github.com/stackitcloud/stackit-cli/internal/pkg/args"
 	"github.com/stackitcloud/stackit-cli/internal/pkg/errors"
@@ -264,27 +264,27 @@ func parseInput(p *print.Printer, cmd *cobra.Command, _ []string) (*inputModel, 
 }
 
 func buildRequest(ctx context.Context, model *inputModel, apiClient *cdn.APIClient) cdn.ApiCreateDistributionRequest {
-	req := apiClient.CreateDistribution(ctx, model.ProjectId)
-	var backend cdn.CreateDistributionPayloadGetBackendArgType
+	req := apiClient.DefaultAPI.CreateDistribution(ctx, model.ProjectId)
+	var backend cdn.CreateDistributionPayloadBackend
 	if model.HTTP != nil {
-		backend = cdn.CreateDistributionPayloadGetBackendArgType{
+		backend = cdn.CreateDistributionPayloadBackend{
 			HttpBackendCreate: &cdn.HttpBackendCreate{
 				Geofencing:           model.HTTP.Geofencing,
 				OriginRequestHeaders: model.HTTP.OriginRequestHeaders,
-				OriginUrl:            &model.HTTP.OriginURL,
-				Type:                 utils.Ptr("http"),
+				OriginUrl:            model.HTTP.OriginURL,
+				Type:                 "http",
 			},
 		}
 	} else {
-		backend = cdn.CreateDistributionPayloadGetBackendArgType{
+		backend = cdn.CreateDistributionPayloadBackend{
 			BucketBackendCreate: &cdn.BucketBackendCreate{
-				BucketUrl: &model.Bucket.URL,
-				Credentials: cdn.NewBucketCredentials(
+				BucketUrl: model.Bucket.URL,
+				Credentials: *cdn.NewBucketCredentials(
 					model.Bucket.AccessKeyID,
 					model.Bucket.Password,
 				),
-				Region: &model.Bucket.Region,
-				Type:   utils.Ptr("bucket"),
+				Region: model.Bucket.Region,
+				Type:   "bucket",
 			},
 		}
 	}
@@ -294,30 +294,28 @@ func buildRequest(ctx context.Context, model *inputModel, apiClient *cdn.APIClie
 		model.Regions,
 	)
 	if len(model.BlockedCountries) > 0 {
-		payload.BlockedCountries = &model.BlockedCountries
+		payload.BlockedCountries = model.BlockedCountries
 	}
 	if len(model.BlockedIPs) > 0 {
-		payload.BlockedIps = &model.BlockedIPs
+		payload.BlockedIps = model.BlockedIPs
 	}
 	if model.DefaultCacheDuration != "" {
 		payload.DefaultCacheDuration = utils.Ptr(model.DefaultCacheDuration)
 	}
 	if model.Loki != nil {
-		payload.LogSink = &cdn.CreateDistributionPayloadGetLogSinkArgType{
-			LokiLogSinkCreate: &cdn.LokiLogSinkCreate{
-				Credentials: &cdn.LokiLogSinkCredentials{
-					Password: &model.Loki.Password,
-					Username: &model.Loki.Username,
-				},
-				PushUrl: &model.Loki.PushURL,
-				Type:    utils.Ptr("loki"),
+		payload.LogSink = &cdn.LokiLogSinkCreate{
+			Credentials: cdn.LokiLogSinkCredentials{
+				Password: model.Loki.Password,
+				Username: model.Loki.Username,
 			},
+			PushUrl: model.Loki.PushURL,
+			Type:    "loki",
 		}
 	}
 	payload.MonthlyLimitBytes = model.MonthlyLimitBytes
 	if model.Optimizer {
-		payload.Optimizer = &cdn.CreateDistributionPayloadGetOptimizerArgType{
-			Enabled: utils.Ptr(true),
+		payload.Optimizer = &cdn.Optimizer{
+			Enabled: true,
 		}
 	}
 	return req.CreateDistributionPayload(*payload)
@@ -328,7 +326,7 @@ func outputResult(p *print.Printer, outputFormat, projectLabel string, resp *cdn
 		return fmt.Errorf("create distribution response is nil")
 	}
 	return p.OutputResult(outputFormat, resp, func() error {
-		p.Outputf("Created CDN distribution for %q. ID: %s\n", projectLabel, utils.PtrString(resp.Distribution.Id))
+		p.Outputf("Created CDN distribution for %q. ID: %s\n", projectLabel, resp.Distribution.Id)
 		return nil
 	})
 }

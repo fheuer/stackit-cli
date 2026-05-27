@@ -39,7 +39,7 @@ stackit beta cdn distribution update [flags]
       --loki-username string                      Username for log sink
       --monthly-limit-bytes int                   Monthly limit in bytes for the CDN distribution
       --optimizer                                 Enable optimizer for the CDN distribution (paid feature).
-      --regions strings                           Regions in which content should be cached, multiple of: ["EU" "US" "AF" "SA" "ASIA"] (default [])
+      --regions strings                           Regions in which content should be cached, multiple of: ["EU" "US" "AF" "SA" "ASIA" "unknown_default_open_api"] (default [])
 ```
 
 ### Options inherited from parent commands
